@@ -48,7 +48,7 @@
             scroll-snap-align: start;
             padding: 20px;
             overflow-x: hidden;
-            overflow-y: scroll;
+            /* overflow-y: scroll; */
             box-sizing: border-box;
             /* overflow-y: auto; */
             /* scroll-behavior: auto; */
@@ -154,7 +154,9 @@
             display: none;
             margin-top: 5px;
             font-size: 14px;
+            overflow: hidden;
         }
+
         .open .toggle-title span {
             transform: rotate(90deg);
         }
@@ -309,7 +311,7 @@
         
         <section class="section" id="profile">
            <h2>DakySnap by Dakyeom Ahn</h2>
-                <img src="your-photo.jpg" alt="Dakyeom Ahn" class="profile-img">
+                <!-- <img src="your-photo.jpg" alt="Dakyeom Ahn" class="profile-img"> -->
                 <!-- <div class="profile-section">
                     <div class="profile-text"> -->
                     <!-- <p><strong></strong></p> -->
@@ -327,11 +329,14 @@
             if (content.style.display === "none" || content.style.display === "") {
                 content.style.display = "block";
                 element.querySelector("span").textContent = "▼";
+                content.parentElement.style.minHeight = "auto"; // 🔥 부모 요소의 높이를 자동 조정
             } else {
                 content.style.display = "none";
                 element.querySelector("span").textContent = "▶";
+                content.parentElement.style.minHeight = ""; // 🔥 다시 기본값으로
             }
         }
+
         function copyReservationForm() {
             var text = document.getElementById("reservation-text").innerText;
             navigator.clipboard.writeText(text).then(() => {
