@@ -15,7 +15,7 @@
             overflow-x: hidden;
             text-align: left;
         }
-        /* .container {
+        .container {
             width: 100vw;
             display: flex;
             flex-direction: column;
@@ -23,10 +23,9 @@
             overflow-y: scroll;
             text-align: left;
             height: 100vh;
-        /* } */ 
+        }
         .container {
             width: 100vw;
-            min-height: auto;
             display: flex;
             flex-direction: column;
             /* scroll-snap-type: y mandatory; */
@@ -40,7 +39,7 @@
         }
         .section {
             width: 100%;      
-            /* min-height: 0vh; */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -49,7 +48,7 @@
             scroll-snap-align: start;
             padding: 20px;
             overflow-x: hidden;
-            /* overflow-y: scroll; */
+            overflow-y: scroll;
             box-sizing: border-box;
             /* overflow-y: auto; */
             /* scroll-behavior: auto; */
@@ -153,11 +152,9 @@
         }
         .toggle-content {
             display: none;
-            /* margin-top: 5px; */
+            margin-top: 5px;
             font-size: 14px;
-            overflow: hidden;
         }
-
         .open .toggle-title span {
             transform: rotate(90deg);
         }
@@ -312,7 +309,7 @@
         
         <section class="section" id="profile">
            <h2>DakySnap by Dakyeom Ahn</h2>
-                <!-- <img src="your-photo.jpg" alt="Dakyeom Ahn" class="profile-img"> -->
+                <img src="your-photo.jpg" alt="Dakyeom Ahn" class="profile-img">
                 <!-- <div class="profile-section">
                     <div class="profile-text"> -->
                     <!-- <p><strong></strong></p> -->
@@ -327,18 +324,14 @@
     <script>
         function toggleContent(id, element) {
             var content = document.getElementById(id);
-            var isOpen = content.classList.contains("open");
-
-            if (!isOpen) {
-                content.classList.add("open");
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
                 element.querySelector("span").textContent = "▼";
             } else {
-                content.classList.remove("open");
+                content.style.display = "none";
                 element.querySelector("span").textContent = "▶";
             }
         }
-
-
         function copyReservationForm() {
             var text = document.getElementById("reservation-text").innerText;
             navigator.clipboard.writeText(text).then(() => {
