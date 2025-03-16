@@ -15,7 +15,7 @@
             overflow-x: hidden;
             text-align: left;
         }
-        .container {
+        /* .container {
             width: 100vw;
             display: flex;
             flex-direction: column;
@@ -23,9 +23,10 @@
             overflow-y: scroll;
             text-align: left;
             height: 100vh;
-        }
+        /* } */ 
         .container {
             width: 100vw;
+            min-height: auto;
             display: flex;
             flex-direction: column;
             /* scroll-snap-type: y mandatory; */
@@ -152,7 +153,7 @@
         }
         .toggle-content {
             display: none;
-            margin-top: 5px;
+            /* margin-top: 5px; */
             font-size: 14px;
             overflow: hidden;
         }
@@ -326,16 +327,17 @@
     <script>
         function toggleContent(id, element) {
             var content = document.getElementById(id);
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block";
+            var isOpen = content.classList.contains("open");
+
+            if (!isOpen) {
+                content.classList.add("open");
                 element.querySelector("span").textContent = "▼";
-                content.parentElement.style.minHeight = "auto"; // 🔥 부모 요소의 높이를 자동 조정
             } else {
-                content.style.display = "none";
+                content.classList.remove("open");
                 element.querySelector("span").textContent = "▶";
-                content.parentElement.style.minHeight = ""; // 🔥 다시 기본값으로
             }
         }
+
 
         function copyReservationForm() {
             var text = document.getElementById("reservation-text").innerText;
