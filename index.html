@@ -324,11 +324,13 @@
     <script>
         function toggleContent(id, element) {
             var content = document.getElementById(id);
-            if (content.style.display === "none" || content.style.display === "") {
-                content.style.display = "block";
+            var isOpen = content.classList.contains("open");
+
+            if (!isOpen) {
+                content.classList.add("open");
                 element.querySelector("span").textContent = "▼";
             } else {
-                content.style.display = "none";
+                content.classList.remove("open");
                 element.querySelector("span").textContent = "▶";
             }
         }
