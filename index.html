@@ -151,12 +151,12 @@
             transition: transform 0.3s ease;
         }
         .toggle-content {
-            display: none;
-            margin-top: 5px;
-            font-size: 14px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
-        .open .toggle-title span {
-            transform: rotate(90deg);
+        .open .toggle-content {
+            max-height: 500px; /* 충분한 높이 */
         }
         .copy-container {
             background: #ffffff;
