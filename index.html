@@ -175,9 +175,11 @@
             border:1px solid #b4b4b4;;
             width: 85%;
             max-width: 600px;
-            margin: 10px auto;
             text-align: left;
             position: relative;
+            margin: 10px;
+            text-align: left;
+            font-size: 14px;
         }
         .copy-button {
             background: #4CAF50;
@@ -204,12 +206,27 @@
             color: #499956;
             text-decoration: none;
         }
-
+        .lang-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-toggle:hover {
+            background: #555;
+        }
 
     </style>
 </head>
 <body>
-    
+    <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+
     <div class="container">
         <section class="section header-section" id="home">
             <img src="header-image.png" alt="Header Image" class="header-image">
@@ -327,18 +344,18 @@
         </section>
     </div>
     <script>
-        function toggleContent(id, element) {
-            var content = document.getElementById(id);
-            var isOpen = content.classList.contains("open");
+        // function toggleContent(id, element) {
+        //     var content = document.getElementById(id);
+        //     var isOpen = content.classList.contains("open");
 
-            if (!isOpen) {
-                content.classList.add("open");
-                element.querySelector("span").textContent = "▼";
-            } else {
-                content.classList.remove("open");
-                element.querySelector("span").textContent = "▶";
-            }
-        }
+        //     if (!isOpen) {
+        //         content.classList.add("open");
+        //         element.querySelector("span").textContent = "▼";
+        //     } else {
+        //         content.classList.remove("open");
+        //         element.querySelector("span").textContent = "▶";
+        //     }
+        // }
         function copyReservationForm() {
             var text = document.getElementById("reservation-text").innerText;
             navigator.clipboard.writeText(text).then(() => {
@@ -346,6 +363,15 @@
             }).catch(err => {
                 console.error("복사 실패: ", err);
             });
+        }
+
+        function toggleLanguage() {
+            const currentPage = window.location.pathname;
+            if (currentPage.includes("index.html")) {
+                window.location.href = "eng.html"; // 한국어 → 영어 페이지 이동
+            } else {
+                window.location.href = "index.html"; // 영어 → 한국어 페이지 이동
+            }
         }
     </script>
 </body>
